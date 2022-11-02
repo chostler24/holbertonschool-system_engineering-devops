@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Script handles client configuration
-host chostler24
-                HostName 54.144.96.216
-                User ubuntu
-                PasswordAuthentication No
-                IdentifyFile ~/.ssh/school
+HostName 54.144.96.216
+User ubuntu
+PasswordAuthentication No
+IdentifyFile ~/.ssh/school

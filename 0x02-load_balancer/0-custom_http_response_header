@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Script configures Nginx response header and new Ubuntu machine
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+sudo service nginx start
+echo 'Hello World!' | sudo tee /var/www/html/error404.html
+
+sudo touch /var/www/html/error404.html
+sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
+
+searchString="\tlocation / {"
+stringReplace="\tadd_header X-Served-By $HOSTNAME};"
+sudo sed -i "s@^$searchString@$stringReplace@" /etc/nginx/sites-available/default
+sudo service nginx restart

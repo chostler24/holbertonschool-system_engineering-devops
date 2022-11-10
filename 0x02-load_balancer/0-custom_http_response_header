@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 # Script configures Nginx response header and new Ubuntu machine
+find="^\tlocation / {"
+replace301="\tlocation /redirect_me {\n\t\treturn 301 \$scheme://youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n\n\tlocation / {"
+replace404="\terror_page 404 /error404.html;\n\n\tlocation / {"
+add_header="\tlocation / {\n\t\tadd_header X-Served-By "$HOSTNAME";"
+
 sudo apt-get -y update
 sudo apt-get -y upgrade
-sudo apt-get -y install nginx
-sudo service nginx start
-echo 'Hello World!' | sudo tee /var/www/html/error404.html
-
-sudo touch /var/www/html/error404.html
+sudo apt-get install -y nginx
+sudo rm /var/www/html/*.html
+sudo echo "Hello World" | sudo tee /var/www/html/index.html
 sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
-
-searchString="\tlocation / {"
-stringReplace="\tadd_header X-Served-By $HOSTNAME};"
-sudo sed -i "s@^$searchString@$stringReplace@" /etc/nginx/sites-available/default
+sudo sed -i "s|$find|$replace301|" /etc/nginx/sites-available/default
+sudo sed -i "s|$find|$replace404|" /etc/nginx/sites-available/default
+sudo sed -i "s|$find|$add_header|" /etc/nginx/sites-available/default
 sudo service nginx restart
+sudo service nginx reload

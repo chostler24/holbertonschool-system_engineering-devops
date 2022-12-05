@@ -20,6 +20,11 @@ if __name__ == "__main__":
     tasks_done = []
     tasks_done_count = 0
 
+    for task in tasks:
+        if task.get('completed'):
+            tasks_done.append(task)
+            tasks_done_count += 1
+
     fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
     with open('./{}.csv'.format(USER_ID), 'w', encoding='UTF-8', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames,

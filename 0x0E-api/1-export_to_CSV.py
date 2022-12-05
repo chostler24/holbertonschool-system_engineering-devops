@@ -12,7 +12,7 @@ if __name__ == "__main__":
     url = API_URL + 'users/{}'.format(ID)
     user_response = requests.get(url)
     profile = json.loads(user_response.text)
-    name = profile['name']
+    name = profile['username']
     url_list = API_URL + 'todos/?userId={}'.format(ID)
     todos_repsonse = requests.get(url_list)
     todos_list = todos_repsonse.text
@@ -22,14 +22,14 @@ if __name__ == "__main__":
 
     for task in tasks:
         task_dict = {}
-        user_id = task_dict['USER_ID']
-        username = task_dict['USERNAME']
+        ID = task_dict['USER_ID']
+        name = task_dict['USERNAME']
         task['completed'] = task_dict['TASK_COMPLETED_STATUS']
         task['title'] = task_dict['TASK_TITLE']
         tasks_done.append(task_dict)
 
     fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
-    with open('./{}.csv'.format(user_id), 'w', encoding='UTF-8', newline='') as f:
+    with open('./{}.csv'.format(ID), 'w', encoding='UTF-8', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames,
                                 quoting=csv.QUOTE_ALL, quotechar='"')
         writer.writerows(tasks_done)

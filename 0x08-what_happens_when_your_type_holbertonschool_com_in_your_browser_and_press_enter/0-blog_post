@@ -1,0 +1,11 @@
+When you enter a website's domain name into your browser, your computer sends a request to a DNS (Domain Name System) server. This server acts as a directory for the internet, containing a database of domain names and their corresponding IP addresses. When the DNS server receives the request, it looks up the IP address for the website and sends it back to your computer.
+
+Once your computer has the IP address, it uses the TCP/IP (Transmission Control Protocol/Internet Protocol) to establish a connection with the server hosting the website. This involves sending a series of packets back and forth between your computer and the server. The packets contain the information needed to establish the connection and transfer the website's content.
+
+When the packets reach the server, they pass through any firewalls in place for security. A firewall is a security system that checks the packets to make sure they don't contain any harmful content or come from an untrusted source. If the packets pass the inspection, they are forwarded to a load balancer.
+
+The load balancer is responsible for distributing incoming traffic evenly across multiple web servers. This ensures that the website can handle a large number of visitors without crashing. Once the packets have been forwarded to a web server, the server assembles the website's content and sends it back to your computer.
+
+To protect the data being transferred, the web server uses HTTPS (Hypertext Transfer Protocol Secure) and SSL (Secure Sockets Layer). HTTPS is the secure version of the standard protocol for transferring web page data (HTTP), and SSL encrypts the data to prevent it from being intercepted and read by anyone other than your computer. As the website's content is sent back to your computer, the packets pass through the firewall again.
+
+Once the packets reach your computer, they are reassembled into the website's content and displayed on your screen. This entire process happens in under a second, which allows you to search for things and view them very quickly and efficiently.
